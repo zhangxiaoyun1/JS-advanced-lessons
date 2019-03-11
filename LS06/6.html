@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //转换后的左操作数若为true，则直接返回原始右操作数，若为false则  直接返回原始左操作数
+    console.log(20&&0);//0
+    console.log(null&&10);//null
+    
+    var s=76;
+    if(s>90){
+        console.log("优");
+    }
+    else if(s>75){
+        console.log("良");
+    }
+    else if(s>60){
+        console.log("及格");
+    }
+    else{
+        console.log("不及格");
+    }
+    console.log((s>90&&"优秀")||(s>75&&"良")||(s>60&&"及格")||"不及格")
+
+    switch(true){
+        case s>90:
+            console.log("优");
+            break;
+        case s>75:
+            console.log("良");
+            break;
+        case s>60:
+            console.log("及格");
+            break;
+        default:
+            console.log("不及格");
+    }
+
+    function sum(x,y,z){
+        x=x||1;
+        y=y||2;
+        z=z||3;
+        return x+y+z;
+    }
+    var sum = function(a,b,c){
+    if(x!=false){x=x||4;}//(b!=false)&&(b=b||4);
+    if(y!=false){y=y||5;}//(c!=false)&&(c=c||5);
+    if(z!=false){z=z||5;}
+    return x+y+z;
+    };
+    function sum1(x,y=1,z=2){
+        return x+y+z;
+    }
+</script>
+</html>
