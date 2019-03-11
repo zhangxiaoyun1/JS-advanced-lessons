@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //ES5
+    {
+    var a = 20;
+    }
+    console.log("大括号外依然能访问到a:",a);
+
+    for(var i = 0;i<5;i++){
+        console.log("in for ",i);
+    }
+    console.log("out of for ",i);//报错么，输出啥？5
+
+    if(true){
+        var a = 20;
+    }
+    console.log(a);//20
+    //严格模式
+    //"use strict"//全局说明下全局变量显示说明
+
+    function foo() {
+         "use strict"//函数内部使用
+    }
+    function  sloppyFunc() {
+        'use strict'
+        sloppyVar = 123;
+    }
+    sloppyFunc();
+    console.log(sloppyVar);//报错
+
+    //"use stirct"
+    function isStrictMode() {
+        return this === window?false:true;//this为undefined
+    } 
+    console.log(isStrictMode());
+    function  strictFunc() {
+        'use strict';
+        console.log(Object.getOwnPropertyDescriptor(str,"length"));
+        str.length = 7;
+        console.log(str.length);//禁止修改不可改变的变量
+    }
+    strictFunc();//报错
+    var i = 1;
+    switch(i){
+        case 1:
+            console.log("case 1");
+        case 2:
+            console.log("case 2");
+            break;//switch具有穿透作用
+        case 3:
+            console.log("case 3");
+            break;
+        case 4:
+            console.log("case 4");
+        default:
+            console.log("default");
+    }
+
+    //for ... in 遍历数组
+    var arr = [2,,"33"];
+    for(var i in arr){
+    console.log(i,arr[i]);//i表示下标
+    }
+    //for ... in 遍历对象
+    var obj = {x:10,y:20,z:"30"};
+    for(var k in obj){
+        console.log(k,obj[k],typeof obj[k]);//k表示属性名
+    }
+</script>
+</html>
