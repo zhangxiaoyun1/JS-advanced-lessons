@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //number
+    var num=10;
+    num.toString();//自动装箱，临时对象，使用之后立即释放
+
+    var num=10;
+    var numObject=new Number(num);//临时对象
+    numObject.toString();
+
+    num.p=10;
+    var t=num.p;
+    console.log(t);//释放
+
+    var num1=11.25;
+    //变量.__proto__和对象.prototype完全相等
+    console.log(num1.__proto__);//两个下划线
+    console.log(Number.prototype);
+    var num1Object=new Number(num1);
+    console.log(num1Object);
+    num1.toFixed(1);
+
+    //String
+    var str1="abcde";
+    var strObject=new String(str1);
+    //返回特定索引位置字符
+    strObject.charAt(2);
+    var str="abc*defgh";
+    str.charAt(1);//返回特定索引位置的字符
+    str.charCodeAt(0);//返回特定位置的哈斯码
+    str.slice(0,3);//截取字符串,尾数之前
+    str.substr(0,3);//第二个参数为截取字符串长度
+    str.substring(0,3);//第二个参数可选,第二个参数大于第一个，互换位置，负值为0
+    str.split("*");//特定的字符分割成字符数组
+    var str="    abc    e   ";
+    str.trim();//去除字符串两边的空白，内部不去除
+    str.concat("abc","def");//拼接字符串，参数个数可选
+    str.toLowerCase( );//大写变小写
+    str.toUpperCase( ); //小写变大写
+    str.indexOf("d",1);//从第一个位置查找d的位置
+
+    //boolean
+    Boolean(null);
+</script>
+</html>

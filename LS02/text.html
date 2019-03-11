@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    (function () {
+    //基本（原始）数据类型与引用（对象）类型的区别 赋值方式不同
+    var str_a = "a"; //
+    var str_b = str_a; // 原始类型直接访问值,是值赋值
+    str_b = "b"; // str_b的值为"b",而str_a的值仍然是"a"
+    console.log(str_a,str_b);
+
+    var obj_a = {v:"a"}; // obj_a存的是引用，引用堆内存中存的对象:{v:"a"};
+    var obj_b = obj_a; // obj_b存的也是引用,引用了堆内存的值{v:"a"}；是引用赋值
+    obj_b.v = "b"; // 通过obj_b访问(修改)堆内存的变量,这时候堆内存中对象值为:{v:"b"},由于obj_a和obj_b引用的是堆内存中同一个对象值，
+    // 所以这时候打印都是{v:"b"}
+    console.log(obj_a,obj_b);
+
+    obj_b = {v:"c"}; // 注意：因为改的是整个对象，这里会在堆内存中创建一个新的对象值:{v:"c"},而现在的obj_b引用的是这个对象，
+    // 所以这里打印的obj_a依旧是{v:"b"},而obj_b是{v:"c"}(两者在内存中引用的是不同对象了)。
+    console.log(obj_a,obj_b);
+    
+    }());
+    var obj_c = {x1:2,y1:3};//obj_c.x1在堆区还是栈区
+    var obj_d = {x2:2,y2:3};
+
+    console.log(obj_c.x1 === obj_d.x2);
+    console.log(obj_c === obj_d);
+    console.log({m:1}==={m:1});
+
+    //判等
+    var a1 = 100;
+    var b1 = 100;
+    console.log(a1 == b1);
+    console.log(a1 === b1);
+    var a2 = new Number(200);
+    var b2 = new Number(200);
+    console.log(a2 == b2);
+    console.log(a2 === b2);
+    var a3 = new Number(200);
+    var b3 = a3;
+    console.log(a3 == b3);
+    console.log(a3 === b3);
+    b3 = new Number(200);
+    console.log(a3 === b3);
+
+    // 值传递
+    var str_a = "Hello World";
+    function fn_a(arg){
+    console.log(arg);
+    arg = "Hai";
+    console.log(str_a,arg);
+    };
+    fn_a(str_a);
+    console.log(str_a);
+    var obj_a = {value:1};
+    function fn_a(arg){
+     arg.value=3;
+    };
+    fn_a(obj_a);
+    console.log(obj_a);
+    function fn_b(arg){
+       arg={value:2};
+    };
+    fn_b(obj_a);
+    console.log(obj_a);
+
+    console.log(Boolean(undefined));//false
+    console.log(Boolean(null));//false
+    console.log(Boolean(0));//false
+    console.log(Boolean(NaN));//false
+    console.log(Boolean(1));//true
+    console.log(Boolean(""));//false
+    console.log(Boolean("abc"));//true
+    console.log(Boolean({}));//true
+
+    console.log(Number(undefined));//NAN
+    console.log(Number(null));//0
+    console.log(Number(true));//1
+    console.log(Number(false));//0
+    console.log(Number(""));//0
+    console.log(Number("abc"));//NAN
+    console.log(Number("123.345xx"));//NAN
+    console.log(Number("32343,345xx"));//NAN
+    console.log(Number({x:1,y:2}));//NAN
+
+    //包装对象
+    var a = 123;
+    var b = new Number(a);
+
+    console.log(a == b);
+    console.log(a === b);//true or false 为什么
+
+    //临时包装对象
+    var str = "abcde";
+    console.log(str.length);//5 临时包装成了String对象
+    str.length = 1;
+    console.log(str.length,str);//5 "abcde" 临时包装对象并不影响原始值
+
+    var arr = [1,2,3,4];
+    console.log(arr.length);//4
+    arr.length = 1;
+    console.log(arr.length,arr);//1 [1]
+</script>
+</html>
