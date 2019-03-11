@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+var x;
+x = 23;
+
+//条件语句
+if(x>22){
+    x+=2;
+}else{
+    console.log("x 不大于 22");
+}
+
+var xx = 234;
+if(234 == xx){ 
+    console.log("相等");
+}
+
+console.log(a);
+if(true){
+    var a = 2;
+}
+console.log(a);
+
+console.log(b);
+if(false){
+    var b = 3;
+}
+console.log(b);
+
+
+//循环语句
+for(var i=0;i<3;i++){
+    console.log("i:",i);
+}
+console.log(i);//是否会报错，若不报错的话此时i为多少？？？？？3
+
+//复合运算符
+var a = 3;
+a+=5;
+console.log(a);
+var a1 = 10;
+console.log(++a1);
+var b = 20;
+console.log(b++);
+//什么类型
+console.log(typeof NaN);//number
+console.log(typeof Infinity);//number
+
+//数据类型
+var num = 1;
+var str = "some string";
+var b = true;
+var n = null;
+var u = undefined;//如果没赋值的话，是什么情况
+
+var arr = ["apple", "pear", "banana"];
+var func = function(){
+    return "this a function";
+};
+var obj = new Object();
+obj.name = "test";
+
+console.log("\n");
+console.log(typeof num); //number
+console.log(typeof str); //string
+console.log(typeof b); //boolean
+console.log(typeof n); //这里返回的是object，这是JS语言的特别之处
+console.log(typeof u); //undefined
+console.log("\n");
+console.log(typeof arr); //object
+console.log(typeof func); //function
+console.log(typeof obj); //object
+
+//思考
+console.log(typeof Number); //function
+console.log(typeof String); //function
+console.log(typeof Boolean); //function
+console.log(typeof Object); //function
+console.log(typeof Array); //function
+console.log(typeof Function); //function
+console.log(typeof RegExp); //function
+console.log(typeof Error); //function
+console.log(typeof Math); //object
+console.log(typeof JSON);//object
+
+var a1 = 2;
+var a2 = "2";
+console.log(a1==a2);
+console.log(a1===a2);
+
+var b1 = {};
+var b2 = {};
+console.log(b1==b2);//false 
+console.log(b1===b2);//false
+console.log(b1===b1);//true
+
+//进一步理解
+var c1 = 23;
+var c2 = new Number(23);
+console.log(c1==c2);//true原理是什么？没有考虑类型相等
+console.log(c1===c2);//false
+
+//包装对象
+var str2 = "abc";
+console.log(str2.length);//3
+str2.length = 1;
+console.log(str2);//abc  原始类型变量的不可变性，指的是包装对象的改变并不影响原始类型的变量
+//怎么理解JS中都是对象这句话
+//访问基本类型的变量属性时，会创建临时包装对象，访问的是该包装对象的属性
+//另外改变此临时包装对象的属性，并不会影原变量（原始类型变量的不可变性）
+//undefined与null 未确定的值、空引用
+//typeof 与 instance
+//typeof 常用于检测基本类型的变量
+//instance 常用于检测引用类型的变量 instance左侧期望是一个对象，右侧期望是一个类型
+console.log({}instanceof Object);//true
+console.log([]instanceof Object);//trye
+console.log([]instanceof Array);//true
+
+//逻辑与、或的基本理解
+console.log(2>1&&4<5);
+console.log(true&&(!2));
+console.log(false&&("2" == 2));
+console.log(false&&false);
+
+console.log(2>1||4<5);
+console.log(true||(!2));
+console.log(false||("2" == 2));
+console.log(false||false);
+
+//数字类型
+console.log(1===1.0);
+console.log(Number("xyz"));
+console.log(3/0);
+
+//字符串链接
+var a = "abc";
+var b = "def";
+var c = a+b;
+
+//字符串常用方法，字符串的方法源于String.prototype
+var str1 = "aaa".concat("bbb");//返回字符串
+var str2 = "abcdef".slice(2);
+var str3 = "abcdef".slice(2,5);
+var str4 = "abcdef".slice(-2);
+var str5 = "abcdef".slice(2,-2);
+
+var str6 = "abcdef".split("c");//返回数组
+var str7 = "abcdef".split("c",1);
+var str8 = "abcdef".split("c",2);
+
+var str9 = "abcdef".charAt(2);
+var str10 = "abcdefabcdef".indexOf("d",1);
+var str11 = "abcdefabcdef".indexOf("d",4);//从第4个开始找
+
+var str12 = "    abc def     \r\n  ".trim();//返回已移除前导空格、尾随空格和行终止符的原始字符串
+
+
+</script>
+</html>
