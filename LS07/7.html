@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function sum(x,y){
+        return x+y;
+    }
+    console.log(sum(1,2));
+    window.onload=function(){
+        alert("页面加载完成");
+    }
+    var sum1=function(x,y){
+        return x+y;
+    }//函数提升
+    console.log(sum1(1,2));
+    
+    var obj={
+        x:0,
+        text:function(){
+            console.log(this.x);
+        }
+    }
+    obj.text();
+
+    var obj1={"objname":"aaa"};
+    var obj2={"objname":"bbb"}
+    obj1.foo=function(){
+        console.log(this.objname);
+    }
+    obj1.foo();
+    obj1.foo.call(obj2);//obj2调用foo方法
+
+    //构造函数
+    function Person(username){
+        this.username=username;
+    }
+    Person.grototype.sayhi=function(){
+        console.log(this.username);
+    }
+    var person=new Person("zhangsan");
+    console.log(person.__proto__===Person.prototype);
+
+    function test(){
+        var s="";
+        //arguments获取实参的类数组
+        for(var i=0;i<arguments.length;i++){
+            s+=arguments[i];
+        }
+        return s;
+    }
+    test("hello","world","!");
+
+    var a=2;
+    function foo(x){
+        x=1;
+        console.log(x);
+    }
+    foo(a);
+    console.log(a);
+
+    var obj={x:0};
+    function bar(boj0){
+        obj0.x=2;
+        console.log(obj,obj0);
+    }
+    bar(obj);
+
+    //定义一个函数完成对变量的复制过程，生成新的变量并返回
+    //引用类型时，数组、对象
+    var obg={"username":"zhangsan","age":20};
+    function copyArg(arg1){
+        var copy;
+        switch(true){
+            case (arg1 instanceof String):
+                copy=arg1;
+                break;
+            case (arg1 instanceof Number):
+                copy=arg1;
+                break;
+            case (arg1 instanceof Boolen):
+                copy=arg1;
+                break;
+            case (arg1 instanceof Array):
+                copy=[];
+                for(var i=0;i<arg1.length;i++){
+                    copy[i]=arg1[i];
+                }
+                break;
+            
+        }
+
+    }
+    copyArg(obg);
+</script>
+</html>
