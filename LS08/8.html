@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //typeof无法更细致区分引用类型
+    var str="abc";
+    var arr1=["a","b","c"];
+    var data=new Object();
+    var arr2=new Array();
+    console.log(typeof arr1);
+    console.log(typeof arr2);
+    console.log(typeof data);
+    //对象 instanceof 构造函数
+    //1、看这个对象能否用该构造函数实例化对象得到，如果能结果为true
+    //2、判断能否在对象的原型链上找到函数的prototype
+    var arr2=[];
+    var arr2=new Array();
+    arr2 instanceof Array;
+    
+    function Person(username){
+        this.username=username;
+    }
+    var person=new Person("zahngsan");
+    console.log(person);
+    person instanceof Person;
+    //判断能否在原型链上找到Object的prototype属性
+    person instanceof Object;
+    console.log(person.__proto__==Person.prototype);
+    console.log(person.__proto__.__proto__);
+    console.log(Object.__proqtoa__);
+
+
+    function fn1(x){
+        //arguments是获取函数调用时传入的实参，类数组结构
+        for(var i=0;i<arguments.length;i++){
+            console.log(arguments[i]);
+        }
+        console.log(fn1.length);
+        //fn1.length表示形参的个数
+    }
+    fn1(10,5,3);
+
+
+    var objA={"onjName":"AAA"};
+    var objB={"onjName":"BBB"};
+    objA.foo=function(){
+        console.log(this.objName);
+    }
+    objA.foo();
+    objA.foo.call(objB);
+
+    //原本this指向，使用Person构造函数实例化对象
+    function Person(username){
+        this.username=username;
+        this.sayhi=function(){
+            console.log(this.username);
+        }
+    }
+    //具有一个指定的this值和分别的提供的参数（参数列表）
+    function Student(username,age){
+        Person.call(this,username);
+        //this.username=username;
+        //Person.apply(this,[username]);数组
+        this.age=age;
+    }
+
+    var person=new Person("zhangsan");
+    var student=new Student("lili",20);
+    console.log(student);
+
+    var obA={
+        "obname":"AAA",
+        "foo":function(){
+            console.log(this.obname);
+        }
+    }
+    var obB={"obname":"BBB"};
+    var foo2=obA.foo.bind(obB);
+    foo2();
+
+    var obj={x:3};
+    function f1(){
+        function f2(){
+            console.log(this.x);
+        }
+        return f2;
+    }
+    obj.f3=f1;
+    obj.f4=f1(); 
+    obj.f3();
+    obj.f4();
+    
+</script>
+</html>
