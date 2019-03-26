@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1" style="width: 50px;height: 50px;"></div>
+</body>
+<script>
+    // var a=1;
+    // function fun1(){
+    //     console.log(a);//1全局变量,任何位置可以访问
+    //     var b=2;
+    //     var c=3;
+    //     function fun2(){
+    //         c=30;
+    //         var d=4;
+    //         console.log(c);//30,从内到外寻找
+    //     }
+    //     fun2();
+    //     console.log(c);//3,没有var30
+    //     //console.log(d);//当前作用域
+    // }
+    // fun1();
+
+    // //函数和变量在完成定义之后，作用域确定，和调用形式无关
+    // var username="jack";
+    // function foo(){
+    //     username="bill";
+    //     console.log(username);
+    // }
+    // function bar(){
+    //     var username="mike";
+    //     foo();
+    //     console.log(username);
+    // }
+    // bar();
+
+    // //ES5没有块级作用域，只有函数的局部作用域
+    // if(true){
+    //     var a=2;
+    // }
+    // console.log(a);
+    // //ES6
+    // if(true){
+    //     let b=1;
+    // }
+    // console.log(b);//报错
+
+    // var userId=5;
+    // document.onclick=function(){
+    //     console.log(userId);
+    //     userId=10;
+    // };
+    // //大段 代码
+    // (function(){
+    //     if(true){
+    //         var userId=30;
+    //     }
+    // })()
+
+    console.log("小明回家");
+    var xx = ["书桌","书包","铅笔盒"];//小明家中
+    console.log("在家-做作业中 1 ...");
+    function goToStore(){
+        var yy = ["文具店老板","出售的文具"];//文具商店中
+        console.log("在文具店-买文具中  ...");
+        function goToBank(){
+            var zz = ["银行职员","柜员机"];//银行中
+            console.log("在银行-取钱 ... 返回文具店");
+        }
+        console.log("在文具店-买文具中  ... 发现没带钱");
+        goToBank();
+        console.log("在文具店-买好文具  ... 返回家");
+    }
+    console.log("在家-做作业中 2 ... 发现笔没油了");
+    goToStore();//笔没油了，去商店买笔
+    console.log("在家-继续做作业...");
+
+    var div1=document.getElementById("div1");
+    var username="zhangsan";
+    function foo(){
+        div1.onclick=function(){
+            this.innerHTML=username;
+        }
+    }
+    foo();
+
+    (function(w,d){
+        w.onload=function(){
+
+        }
+    })(window,document)
+</script>
+</html>
