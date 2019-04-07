@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>   
+    //立即执行
+    (function max(x,y){
+        return x>y?x:y;
+    }(2,3));
+    //匿名
+    (function min(x,y){
+        return x>y?y:x;
+    })(2,3);
+
+    function fn(){
+        var arr1=[];
+        for(var i;i<10;i++){
+            arr1[i]=function(){
+                return i;
+            }
+        }
+        //等价于
+        arr1[0]=function(){
+            return i;
+        }
+        arr1[1]=function(){
+            return i;
+        }
+
+        for(var i;i<10;i++){
+            (function(j){//形成作用域，并且立即执行,避免变量的非期望共享
+                arr1[j]=function(){
+                    return j;
+                }
+            })(i)  
+        }
+        //等价于
+        for(var i;i<10;i++){
+            (function(j){
+                arr1[j]=function(){
+                    return j;
+                }
+            })(0)  
+        }
+        for(var i;i<10;i++){
+            (function(j){
+                arr1[j]=function(){
+                    return j;
+                }
+            })(1)  
+        }
+        return arr1;
+    }
+    fn()[0]();
+
+
+    for(var i=0;i<3;i++){
+        setTimeout(function(){
+            console.log(new Date(),i);
+        },i*1000);
+    }
+
+    for(var i=0;i<3;i++){
+        (function(j){
+            setTimeout(function(){
+                console.log(new Date(),j);
+            },j*1000);
+        })(i)
+    }
+
+
+</script>
+</html>
