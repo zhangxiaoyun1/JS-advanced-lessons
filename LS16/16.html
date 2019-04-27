@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //非严格模式下，this指向window对象；严格模式下指向undefined。取决于函数调用主体
+    var x=10;
+    console.log(window.x);
+
+    function thisText(){
+        console.log(this);
+        console.log(this==window);
+    }
+    thisText();
+
+    function thisText1(){
+        'use strict';
+        console.log(this);
+        return this==undefined?true:false;
+    }
+    thisText1();
+
+    var point={
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+    //直接定义在对象下的方法，调用主体是当前对象，前提是没有函数的嵌套关系
+    point.moveTo(10,10);
+
+    function Point(x,y){
+        this.x=x;
+        this.y=y;
+        this.moveTo=function(x,y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+    var p=new Point(10,10);
+    //this指向函数调用的主体
+    p.moveTo(15,15);
+
+    var objA={name:"AA",x:1};
+    var objB={name:"BB",x:1};
+    function text(m){
+        console.log(this.name);
+        this.x=m;
+        console.log(this.x);
+    }
+    objA.fun=text;
+    objA.fun(2);
+    //方法A.call（对象）；
+    //切换方法A的调用主体，this指向函数调用的主体
+    //方法.call（要切换的调用对象，arg1，arg2，arg3）
+    //方法.apply(要切换的调用对象，[arg1，arg2，arg3])参数形式不一样
+    objA.fun.call(objB,3);
+
+    var point={
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            var that=this;//软绑定n
+            function moveToX(x){
+                console.log(this);
+                that.x=x;
+            }
+            function moveToY(y){
+                that.y=y;
+            }
+            moveToX(x);
+            moveToY(y);
+        }
+    }
+    //对象内部的函数，存在嵌套关系，内部函数的this指向window对象
+    point.moveTo(10,10);
+    console.log(point);
+
+    var point={
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            function moveToX(x){
+                this.x=x;
+            }
+            function moveToY(y){
+                this.y=y;
+            }
+            moveToX.call(this.x);//切换moveToX的调用主体，并且执行函数moveToX
+            moveToY.bind(this.y)();//切换moveToY的调用主体,生成新的函数，不执行 
+            console.log(moveToY.bind(this));
+        }
+    }
+    point.moveTo(10,10);
+    console.log(point);
+
+</script>
+</html>
